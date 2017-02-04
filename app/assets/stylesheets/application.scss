@@ -10,11 +10,25 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
+ * require_tree .
+ * require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 .navibar {
     padding: 10px;
     background: #EFEFEF;
+}
+
+.navbar .container-fluid{
+  max-width: 1200px;
+  margin: 0px auto;
+}
+
+.main-container{
+  max-width: 1200px;
+  padding: 10px 25px;
+  margin: 0px auto;
 }

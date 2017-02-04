@@ -4,11 +4,24 @@
     Number of ratings: <%= @ratings.count %>
 </p>
 
-<ul>
-    <% @ratings.each do |rating| %>
-        <li> <%= rating %> <%= link_to  "delete", rating, method: :delete, data: { confirm: 'Are you sure?' } %> </li>
-    <% end %>
-</ul>
 
-<%= link_to  "new", new_rating_path %>
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>User</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @ratings.each do |rating| %>
+      <tr>
+        <td><%= rating %></td>
+        <td><%= link_to  "#{rating.user.username}", rating.user %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to  "new", new_rating_path, class: "btn btn-primary" %>
 
