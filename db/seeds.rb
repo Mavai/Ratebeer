@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+
 b1 = Brewery.create name:"Koff", year:1897
 b2 = Brewery.create name:"Malmgard", year:2001
 b3 = Brewery.create name:"Weihenstephaner", year:1042
@@ -17,3 +19,5 @@ b2.beers.create name:"Huvila Pale Ale", style:"Pale Ale"
 b2.beers.create name:"X Porter", style:"Porter"
 b3.beers.create name:"Hefeweizen", style:"Weizen"
 b3.beers.create name:"Helles", style:"Lager"
+
+u1 = User.create username:"mavai", password:"Sala", password_confirmation:"Sala"

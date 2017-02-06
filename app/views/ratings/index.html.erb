@@ -1,7 +1,7 @@
 <h2>List of rating</h2>
 
 <p>
-    Number of ratings: <%= @ratings.count %>
+  Number of ratings: <%= @ratings.count %>
 </p>
 
 
@@ -17,11 +17,13 @@
   <% @ratings.each do |rating| %>
       <tr>
         <td><%= rating %></td>
-        <td><%= link_to  "#{rating.user.username}", rating.user %></td>
+        <td><%= link_to "#{rating.user.username}", rating.user %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
 
-<%= link_to  "new", new_rating_path, class: "btn btn-primary" %>
+<% if current_user %>
+    <%= link_to "new", new_rating_path, class: "btn btn-primary" %>
+<% end %>
 
