@@ -6,5 +6,9 @@ class User < ActiveRecord::Base
   has_many :beer_clubs, through: :memberships
   has_secure_password
   validates :username, uniqueness: true, length: {minimum: 3, maximum: 30}
-  validates :password, length: {minimum: 4}, format: {with: /[A-Z]/}
+  validates :password, length: {minimum: 4}, format: {with: /([A-Z].*\d)|(\d.*[A-Z].*)/}
+
+  def favorite_beer
+
+  end
 end
