@@ -9,6 +9,17 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 4}, format: {with: /([A-Z].*\d)|(\d.*[A-Z].*)/}
 
   def favorite_beer
+    return nil if ratings.empty?
+    ratings.order(score: :desc).limit(1).first.beer
+  end
 
+  def favorite_style
+    return nil if ratings.empty?
+    ratings.map { |r| r.beer.style }.uniq.sort_by { |style| average_rating_of_style(style) }.last
+  end
+
+  def favorite_brewery
+    return nil if ratings.empty?
+    ratings.map { |r| r.beer.brewery }.uniq.sort_by { |brewery| brewery.average_rating }.last
   end
 end

@@ -1,35 +1,40 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @user.username %></h1>
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
 
-<p>has made <%= @user.ratings.count %> ratings, average <%= @user.average_rating %></p>
+<p>Has made <%= @user.ratings.count %> ratings, average <%= @user.average_rating %></p>
 
-<p>Member of
-  <% @user.beer_clubs.each do |beer_club| %>
-      <%= link_to "#{beer_club.name}", beer_club %>|
+<p>Favorite style: <%= @user.favorite_style %></p>
+
+<p>Favorite brewery:
+  <% if @user.favorite_brewery %>
+      <%= @user.favorite_brewery.name %></p>
+  <% else %>
+      None
   <% end %>
-</p>
 
-<h3>ratings</h3>
+  <p>Member of
+    <% @user.beer_clubs.each do |beer_club| %>
+        <%= link_to "#{beer_club.name}", beer_club %>|
+    <% end %>
+  </p>
 
-<ul class="list-group">
-  <% @user.ratings.each do |rating| %>
-      <li class="list-group-item">
-        <%= rating %>
-        <% if @user == current_user %>
-            <%= link_to "delete", rating, method: :delete, data: {confirm: 'Are you sure?'} %>
-        <% end %>
-      </li>
+  <h3>ratings</h3>
+
+  <ul class="list-group">
+    <% @user.ratings.each do |rating| %>
+        <li class="list-group-item">
+          <%= rating %>
+          <% if @user == current_user %>
+              <%= link_to "delete", rating, method: :delete, data: {confirm: 'Are you sure?'} %>
+          <% end %>
+        </li>
+    <% end %>
+  </ul>
+
+  <%= link_to 'Back', users_path %> |
+  <% if @user == current_user %>
+      <%= link_to 'Edit', edit_user_path(@user) %> |
+      <%= link_to 'Destroy', @user, method: :delete, data: {confirm: 'Are you sure?'} %>
   <% end %>
-</ul>
-
-<%= link_to 'Back', users_path %> |
-<% if @user == current_user %>
-    <%= link_to 'Edit', edit_user_path(@user) %> |
-    <%= link_to 'Destroy', @user, method: :delete, data: {confirm: 'Are you sure?'} %>
-<% end %>
 

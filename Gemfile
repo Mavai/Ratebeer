@@ -26,6 +26,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bcrypt', '~> 3.1.7'
 
 
+
 group :production do
   gem 'pg'
 
@@ -67,5 +68,7 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-
+  gem 'capybara'
+  gem 'launchy'
+  gem 'simplecov', require: false
 end

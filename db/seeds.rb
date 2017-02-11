@@ -20,4 +20,4 @@ b2.beers.create name:"X Porter", style:"Porter"
 b3.beers.create name:"Hefeweizen", style:"Weizen"
 b3.beers.create name:"Helles", style:"Lager"
 
-u1 = User.create username:"mavai", password:"Sala", password_confirmation:"Sala"
+User.create username:"mavai", password:"Sala1", password_confirmation:"Sala1"
