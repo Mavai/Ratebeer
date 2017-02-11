@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.org/mluukkai/ratebeer-public.png)](https://travis-ci.org/mluukkai/ratebeer-public)
+[![Build Status](https://github.com/Mavai/Ratebeer.png)](https://github.com/Mavai/Ratebeer)
