@@ -6,7 +6,7 @@ describe 'Beer' do
   let!(:user) { FactoryGirl.create :user }
 
   before :each do
-    sign_in(usrname: 'Pekka', password: 'Foobar1')
+    sign_in(username: 'Pekka', password: 'Foobar1')
   end
 
   it 'is registered when given valid name' do
