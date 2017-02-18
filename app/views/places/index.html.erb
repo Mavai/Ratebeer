@@ -1,9 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<%= form_tag places_path do %>
-    city <%= text_field_tag :city, params[:city] %>
-    <%= submit_tag "Search" %>
-<% end %>
+<p>
+  <%= form_tag places_path do %>
+      city <%= text_field_tag :city, params[:city] %>
+      <%= submit_tag "Search" %>
+  <% end %>
+</p>
+
+
+<p>
+  <% if @weather %>
+      The current weather in <%= @weather.location['name'] %> <br>
+      <%= image_tag @weather.current['condition']['icon'] %> <br>
+      <%= @weather.current['temp_c'] %> Celcius <br> <br>
+      <strong>Wind: </strong> <%= @weather.current['wind_mph'] %> m/sec, direction <%= @weather.current['wind_dir'] %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Places to get your beer</strong>
+</p>
 
 <% if @places %>
     <table class="table table-bordered table-striped">
