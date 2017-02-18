@@ -24,9 +24,17 @@ FactoryGirl.define do
     year 1900
   end
 
+  factory :style do
+    name 'Lager'
+  end
+
+  factory :style2, class: Style do
+    name 'American IPA'
+  end
+
   factory :beer do
     name "Iso 3"
     brewery
-    style "Lager"
+    style
   end
 end
