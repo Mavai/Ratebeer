@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
     return nil if ratings.empty?
     ratings.map { |r| r.beer.brewery }.uniq.sort_by { |brewery| brewery.average_rating }.last
   end
+
+  def self.top(n)
+    User.all.sort_by { |user| -(user.ratings.count) }.first 3
+  end
 end

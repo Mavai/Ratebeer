@@ -5,6 +5,8 @@ class Brewery < ActiveRecord::Base
   validates :name, presence: true
   validates :year, numericality: {greater_than_or_equal_to: 1042, :only_integer => true}
   validate :year_cannot_be_in_the_future
+  scope :active, -> { where active: true }
+  scope :retired, -> { where active: [nil, false] }
 
   def print_report
     puts name
@@ -22,5 +24,8 @@ class Brewery < ActiveRecord::Base
       errors.add(:year, "can't be in the future")
     end
   end
-  
+
+  def self.top(n)
+    Brewery.all.sort_by { |b| -(b.average_rating) }.first n
+  end
 end

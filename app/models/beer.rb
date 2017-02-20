@@ -8,7 +8,11 @@ class Beer < ActiveRecord::Base
   validates :style_id, presence: true
 
   def to_s
-    "#{name} - #{brewery.name}"
+    "#{name} #{brewery.name}"
+  end
+
+  def self.top(n)
+    Beer.all.sort_by { |b| -(b.average_rating) }.first n
   end
 
 end

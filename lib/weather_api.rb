@@ -6,9 +6,14 @@ class WeatherApi
   end
 
   def self.fetch_weather_in(city)
-    url = "https://api.apixu.com/v1/current.json?key=02752fb9884d44859c8160429171802&q="
+    url = "https://api.apixu.com/v1/current.json?key=#{key}="
     weather_info = HTTParty.get "#{url}#{ERB::Util.url_encode(city)}"
-    return[] if weather_info['error']
+    return nil if weather_info['error']
     Weather.new(weather_info)
+  end
+
+  def self.key
+    raise 'WEATHERAPI env variable not defined' if ENV['WEATHERAPI'].nil?
+    ENV['WEATHERAPI']
   end
 end

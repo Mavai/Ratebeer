@@ -27,15 +27,6 @@ describe "Rating" do
     expect(beer1.average_rating).to eq(15.0)
   end
 
-  it 'all are listed correctly and with correct count' do
-    FactoryGirl.create(:rating, score: 10, beer: beer1, user: user1)
-    FactoryGirl.create(:rating, score: 20, beer: beer2, user: user2)
-    visit ratings_path
-    expect(page).to have_content 'Number of ratings: 2'
-    expect(page).to have_content 'iso 3'
-    expect(page).to have_content 'Karhu'
-  end
-
   it "user's page only lists user's ratings" do
     FactoryGirl.create(:rating, score: 10, beer: beer1, user: user1)
     FactoryGirl.create(:rating, score: 20, beer: beer2, user: user2)

@@ -5,6 +5,9 @@ describe 'Places' do
     allow(BeermappingApi).to receive(:places_in).with('kumpula').and_return(
         [Place.new(name: 'Oljenkorsi', id: 1)]
     )
+    allow(WeatherApi).to receive(:weather_in).with('kumpula').and_return(
+        nil
+    )
     visit places_path
     fill_in('city', with: 'kumpula')
     click_button 'Search'
@@ -15,6 +18,9 @@ describe 'Places' do
     allow(BeermappingApi).to receive(:places_in).with('kumpula').and_return(
         [Place.new(name: 'Oljenkorsi', id: 1), Place.new(name: 'Baari', id: 2)]
     )
+    allow(WeatherApi).to receive(:weather_in).with('kumpula').and_return(
+        nil
+    )
     visit places_path
     fill_in('city', with: 'kumpula')
     click_button 'Search'
@@ -24,6 +30,9 @@ describe 'Places' do
 
   it 'if none is returned by the API, message is shown' do
     allow(BeermappingApi).to receive(:places_in).with('kumpula').and_return(
+        []
+    )
+    allow(WeatherApi).to receive(:weather_in).with('kumpula').and_return(
         []
     )
     visit places_path

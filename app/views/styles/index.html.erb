@@ -2,7 +2,7 @@
 
 <h1>Listing Styles</h1>
 
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped table-hover">
   <thead>
     <tr>
       <th>Name</th>
@@ -14,8 +14,8 @@
     <% @styles.each do |style| %>
       <tr>
         <td><%= link_to style.name, style %></td>
-        <td><%= link_to 'Edit', edit_style_path(style) %></td>
-        <td><%= link_to 'Destroy', style, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_style_path(style), class: "btn btn-primary btn-xs" %></td>
+        <td><%= link_to 'Destroy', style, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -23,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Style', new_style_path %>
+<%= link_to 'New Style', new_style_path, class: "btn btn-primary" %>
