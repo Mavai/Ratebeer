@@ -54,7 +54,9 @@ RSpec.describe StylesController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new style as @style" do
-      get :new, params: {}, session: valid_session
+      FactoryGirl.create :user
+      session[:user_id] = 1
+      get :new, params: {}
       expect(assigns(:style)).to be_a_new(Style)
     end
   end

@@ -14,13 +14,23 @@ class User < ActiveRecord::Base
   end
 
   def favorite_style
-    return nil if ratings.empty?
-    ratings.map { |r| r.beer.style }.uniq.sort_by { |style| average_rating_of_style(style) }.last
+    favorite :style
   end
 
   def favorite_brewery
+    favorite :brewery
+  end
+
+  def favorite(category)
     return nil if ratings.empty?
-    ratings.map { |r| r.beer.brewery }.uniq.sort_by { |brewery| brewery.average_rating }.last
+
+    rated = ratings.map{ |r| r.beer.send(category) }.uniq
+    rated.sort_by { |item| -rating_of(category, item) }.first
+  end
+
+  def rating_of(category, item)
+    ratings_of = ratings.select{ |r| r.beer.send(category)==item }
+    ratings_of.map(&:score).inject(&:+) / ratings_of.count.to_f
   end
 
   def self.top(n)

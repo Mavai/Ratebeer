@@ -51,14 +51,14 @@
         1,
         null,
         1,
-        29,
-        49,
+        16,
+        15,
         null,
         null,
         1,
-        8,
-        50,
-        8,
+        0,
+        0,
+        0,
         null,
         null,
         null
@@ -122,6 +122,8 @@
         null
       ],
       "/home/marko/Github/Ratebeer/app/controllers/styles_controller.rb": [
+        1,
+        1,
         1,
         1,
         null,
@@ -206,12 +208,16 @@
         1,
         null,
         1,
-        149,
-        103,
+        160,
+        116,
         null,
         null,
         1,
-        4,
+        5,
+        null,
+        null,
+        1,
+        0,
         null,
         null
       ],
@@ -253,12 +259,22 @@
         null,
         1,
         16,
-        31,
         null,
         null,
         1,
         21,
-        44,
+        null,
+        null,
+        1,
+        37,
+        null,
+        54,
+        40,
+        null,
+        null,
+        1,
+        74,
+        21,
         null,
         null,
         1,
@@ -276,7 +292,11 @@
         8,
         8,
         7,
+        0,
+        null,
         7,
+        7,
+        null,
         null,
         1,
         null,
@@ -355,6 +375,13 @@
         null,
         null,
         1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        1,
         null,
         1,
         13,
@@ -379,6 +406,7 @@
         null
       ],
       "/home/marko/Github/Ratebeer/app/controllers/beers_controller.rb": [
+        1,
         1,
         1,
         1,
@@ -466,6 +494,7 @@
         null
       ],
       "/home/marko/Github/Ratebeer/app/controllers/breweries_controller.rb": [
+        1,
         1,
         1,
         1,
@@ -739,6 +768,7 @@
         0,
         0,
         0,
+        0,
         0
       ],
       "/home/marko/Github/Ratebeer/app/controllers/memberships_controller.rb": [
@@ -903,6 +933,6 @@
         0
       ]
     },
-    "timestamp": 1487596319
+    "timestamp": 1487954595
   }
 }
