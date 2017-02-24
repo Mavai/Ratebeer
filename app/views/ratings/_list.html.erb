@@ -10,7 +10,7 @@
   <% subjects.each do |subject| %>
       <tr>
         <td><%= link_to subject.name, subject %></td>
-        <td><%= subject.average_rating %></td>
+        <td><%= round(subject.average_rating) %></td>
       </tr>
   <% end %>
   </tbody>
