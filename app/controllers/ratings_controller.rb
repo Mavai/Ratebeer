@@ -6,7 +6,7 @@ class RatingsController < ApplicationController
     @top_users = Rails.cache.fetch('user top 3', expires_in: 10.minutes) {User.top 3}
     @top_breweries = Rails.cache.fetch('brewery top 3', expires_in: 10.minutes) {Brewery.top 3}
     @top_beers = Rails.cache.fetch('beer top 3', expires_in: 10.minutes) {Beer.top 3}
-    @recent_ratings = Rails.cache.fetch('recent rating', expires_in: 10.minutes) {Rating.recent.includes(:beer, :user, :brewery)}
+    @recent_ratings = Rails.cache.fetch('recent rating', expires_in: 10.minutes) {Rating.recent.includes(:beer, :user)}
     @top_styles = Rails.cache.fetch('style top 3', expires_in: 10.minutes) {Style.top 3}
   end
 
