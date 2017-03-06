@@ -2,6 +2,8 @@ class StylesController < ApplicationController
   before_action :set_style, only: [:show, :edit, :update, :destroy]
   before_action :ensure_that_signed_in, except: [:index, :show]
   before_action :ensure_that_signed_in_as_admin, only: [:destroy]
+  before_action :skip_if_cached, only: [:index]
+
 
   # GET /styles
   # GET /styles.json
@@ -61,6 +63,10 @@ class StylesController < ApplicationController
       format.html { redirect_to styles_url, notice: 'Style was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def skip_if_cached
+    return render :index if fragment_exist?('stylelist')
   end
 
   private

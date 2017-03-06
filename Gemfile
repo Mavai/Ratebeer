@@ -27,6 +27,12 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'httparty'
 
+gem 'jquery-turbolinks'
+
+gem 'rack-mini-profiler'
+
+gem 'sucker_punch', '~> 2.0'
+
 group :production do
   gem 'pg'
 
@@ -74,4 +80,7 @@ group :test do
   gem 'launchy'
   gem 'simplecov', require: false
   gem 'webmock'
+  gem 'selenium-webdriver', '2.53.4'
+  gem 'database_cleaner'
+
 end

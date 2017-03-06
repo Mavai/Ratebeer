@@ -12,7 +12,7 @@ class BeerClubsController < ApplicationController
   # GET /beer_clubs/1
   # GET /beer_clubs/1.json
   def show
-    @membership = current_user.memberships.find_by beer_club_id: params[:id]
+    @membership = current_user.memberships.find_by beer_club_id: params[:id] if current_user
     @membership = Membership.new if @membership.nil?
   end
 
@@ -32,6 +32,7 @@ class BeerClubsController < ApplicationController
 
     respond_to do |format|
       if @beer_club.save
+        Membership.create beer_club_id:@beer_club.id, user_id:current_user.id, confirmed:true
         format.html { redirect_to @beer_club, notice: 'Beer club was successfully created.' }
         format.json { render :show, status: :created, location: @beer_club }
       else

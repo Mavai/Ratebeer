@@ -25,5 +25,7 @@ module Ratebeer
 
     config.autoload_paths += Dir["#{Rails.root}/lib"]
 
+    config.autoload_paths += Dir["#{Rails.root}/app/jobs"]
+
   end
 end

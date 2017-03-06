@@ -1,10 +1,13 @@
 class RatingsController < ApplicationController
+  before_action 'skip_if_cached', only: [:index]
+
   def index
-    @top_users = User.top 3
-    @top_breweries = Brewery.top 3
-    @top_beers = Beer.top 3
-    @recent_ratings = Rating.recent
-    @top_styles = Style.top 3
+    @ratings = Rating.all
+    @top_users = Rails.cache.fetch('user top 3', expires_in: 10.minutes) {User.top 3}
+    @top_breweries = Rails.cache.fetch('brewery top 3', expires_in: 10.minutes) {Brewery.top 3}
+    @top_beers = Rails.cache.fetch('beer top 3', expires_in: 10.minutes) {Beer.top 3}
+    @recent_ratings = Rails.cache.fetch('recent rating', expires_in: 10.minutes) {Rating.recent.includes(:beer, :user, :brewery)}
+    @top_styles = Rails.cache.fetch('style top 3', expires_in: 10.minutes) {Style.top 3}
   end
 
   def new
@@ -27,6 +30,10 @@ class RatingsController < ApplicationController
     rating = Rating.find(params[:id])
     rating.delete if current_user == rating.user
     redirect_to :back
+  end
+
+  def skip_if_cached
+    return render :index if fragment_exist?('ratinglist')
   end
 
 end

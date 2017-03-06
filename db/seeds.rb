@@ -6,23 +6,35 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+users = 200 # jos koneesi on hidas, riittää esim 100
+breweries = 100 # jos koneesi on hidas, riittää esim 50
+beers_in_brewery = 40
+ratings_per_user = 30
 
+(1..users).each do |i|
+  User.create! username: "user_#{i}", password: "Passwd1", password_confirmation: "Passwd1"
+end
 
-b1 = Brewery.create name:"Koff", year:1897
-b2 = Brewery.create name:"Malmgard", year:2001
-b3 = Brewery.create name:"Weihenstephaner", year:1042
+(1..breweries).each do |i|
+  Brewery.create! name: "Brewery_#{i}", year: 1900, active: true
+end
 
-Style.create name:'Lager'
-Style.create name:'American IPA', description: "The American IPA is a different soul from the reincarnated IPA style. More flavorful than the withering English IPA, color can range from very pale golden to reddish amber. Hops are typically American with a big herbal and / or citric character, bitterness is high as well. Moderate to medium bodied with a balancing malt backbone."
-Style.create name:'American Stout', description: 'Inspired from English & Irish Stouts, the American Stout is the ingenuous creation from that. Thankfully with lots of innovation and originality American brewers have taken this style to a new level. Whether it is highly hopping the brew or adding coffee or chocolate to complement the roasted flavors associated with this style. Some are even barrel aged in Bourbon or whiskey barrels. The hop bitterness range is quite wide but most are balanced. Many are just easy drinking session stouts as well. '
+bulk = Style.create! name: "Bulk", description: "cheap, not much taste"
 
+Brewery.all.each do |b|
+  n = rand(beers_in_brewery)
+  (1..n).each do |i|
+    beer = Beer.create! name: "Beer #{b.id} -- #{i}", style: bulk
+    b.beers << beer
+  end
+end
 
-b1.beers.create name:"Iso 3", style_id: 1
-b1.beers.create name:"Karhu", style_id: 1
-b1.beers.create name:"Tuplahumala", style_id: 2
-b2.beers.create name:"Huvila Pale Ale", style_id: 2
-b2.beers.create name:"X Porter", style_id: 2
-b3.beers.create name:"Hefeweizen", style_id: 3
-b3.beers.create name:"Helles", style_id: 3
-
-User.create username:"mavai", password:"Sala1", password_confirmation:"Sala1"
+User.all.each do |u|
+  n = rand(ratings_per_user)
+  beers = Beer.all.shuffle
+  (1..n).each do |i|
+    r = Rating.new score: (1+rand(50))
+    beers[i].ratings << r
+    u.ratings << r
+  end
+end

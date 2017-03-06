@@ -1,5 +1,6 @@
 class MembershipsController < ApplicationController
   before_action :set_membership, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_signed_in, only: [:toggle_confirmed]
 
   # GET /memberships
   # GET /memberships.json
@@ -15,7 +16,7 @@ class MembershipsController < ApplicationController
   # GET /memberships/new
   def new
     @membership = Membership.new
-    @beer_clubs = BeerClub.all.select{|c|c.users.exclude? current_user}
+    @beer_clubs = BeerClub.all.select { |c| c.users.exclude? current_user }
   end
 
   # GET /memberships/1/edit
@@ -63,14 +64,26 @@ class MembershipsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_membership
-      @membership = Membership.find(params[:id])
+  def toggle_confirmed
+    membership = Membership.find(params[:id])
+    if current_user.confirmed_beer_clubs.include? membership.beer_club
+      membership.update_attribute :confirmed, (true)
+      redirect_to :back, notice: 'Membership confirmed'
+    else
+      redirect_to :back
     end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def membership_params
-      params.require(:membership).permit(:beer_club_id, :user_id)
-    end
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_membership
+    @membership = Membership.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def membership_params
+    params.require(:membership).permit(:beer_club_id, :user_id)
+    params[:confirmed] = false
+  end
+
 end

@@ -2,6 +2,8 @@
 
 <h1>Listing Styles</h1>
 
+<% cache 'stylelist', expires_in: 10.minutes do %>
+
 <table class="table table-bordered table-striped table-hover">
   <thead>
     <tr>
@@ -20,6 +22,7 @@
     <% end %>
   </tbody>
 </table>
+<% end %>
 
 <br>
 

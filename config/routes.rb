@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :memberships
+  resources :memberships do
+    post 'toggle_confirmed', on: :member
+  end
   resources :beer_clubs
   resources :users do
     post 'toggle_blocked', on: :member
@@ -21,6 +23,10 @@ Rails.application.routes.draw do
   delete 'signout', to: 'sessions#destroy'
 
   post 'places', to:'places#search'
+
+  get 'beerlist', to:'beers#list'
+  get 'brewerylist', to:'breweries#list'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -18,11 +18,6 @@
           <% else %>
               None
           <% end %>
-          <p><strong>Member of</strong>
-            <% @user.beer_clubs.each do |beer_club| %>
-                <%= link_to "#{beer_club.name}", beer_club %>|
-            <% end %>
-          </p>
           </div>
     </div>
   </div>
@@ -50,6 +45,22 @@
       <% end %>
       </tbody>
     </table>
+    <div class="col-md-6">
+      <h2>Member of</h2>
+      <ul>
+        <% @user.confirmed_memberships.each do |membership| %>
+            <li><%= link_to membership.beer_club.name, membership.beer_club %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h2>Applied member of</h2>
+      <ul>
+        <% @user.unconfirmed_memberships.each do |membership| %>
+            <li><%= link_to membership.beer_club.name, membership.beer_club %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
 

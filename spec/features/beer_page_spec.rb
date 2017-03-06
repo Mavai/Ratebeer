@@ -11,7 +11,9 @@ describe 'Beer' do
   end
 
   it 'is registered when given valid name' do
-    visit beers_path
+    session.visit beers_path(order: 'desc')
+    binding.pry
+    save_and_open_page
     click_link 'New Beer'
     fill_in('beer_name', with: 'Iso 3')
     expect {
