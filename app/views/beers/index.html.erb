@@ -1,21 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<div style="border-style: solid;">
-  beerlist-name-asc: <%= ActionController::Base.new.fragment_exist?( 'beerlist-name-asc' ) %>
-  <br>
-  beerlist-style-asc: <%= ActionController::Base.new.fragment_exist?( 'beerlist-style-asc' ) %>
-  <br>
-  beerlist-brewery-asc: <%= ActionController::Base.new.fragment_exist?( 'beerlist-brewery-asc' ) %>
-  <br>
-  beerlist-name-desc: <%= ActionController::Base.new.fragment_exist?( 'beerlist-name-desc' ) %>
-  <br>
-  beerlist-style-desc: <%= ActionController::Base.new.fragment_exist?( 'beerlist-style-desc' ) %>
-  <br>
-  beerlist-brewery-desc: <%= ActionController::Base.new.fragment_exist?( 'beerlist-brewery-desc' ) %>
-  <br>
-  current: <%= "beerlist-#{@order}-#{@direction}" %>
-</div>
-
 <h1>Listing Beers</h1>
 
 <% cache "beerlist-#{@order}-#{@direction}", skip_digest: true do %>
